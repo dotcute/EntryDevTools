@@ -1,0 +1,21 @@
+{
+  "description": "엔트리 개발자 도구",
+  "manifest_version": 2,
+  "name": "엔트리 개발자 도구",
+  "version": "1.0",
+  "author": "thoratica",
+  "icons": {
+    "48": "icons/star.png"
+  },
+  
+  "background": {
+    "scripts": ["background_scripts/background.js"]
+  },
+  
+  "permissions": [
+      "<all_urls>"
+  ],
+  
+  "devtools_page": "devtools/devtools-page.html"
+
+}
