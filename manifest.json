@@ -5,17 +5,26 @@
   "version": "1.0",
   "author": "thoratica",
   "icons": {
-    "48": "icons/star.png"
+    "48": "icons/logo.png"
   },
-  
   "background": {
-    "scripts": ["background_scripts/background.js"]
+    "scripts": [
+      "background_scripts/background.js"
+    ]
   },
-  
-  "permissions": [
-      "<all_urls>"
+  "content_scripts": [
+    {
+      "matches": [
+        "https://playentry.org/*"
+      ],
+      "css": [
+        "semantic.min.css"
+      ],
+      "js": [
+        "jquery-3.4.1.js",
+        "semantic.min.js"
+      ]
+    }
   ],
-  
   "devtools_page": "devtools/devtools-page.html"
-
 }

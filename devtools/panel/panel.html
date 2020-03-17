@@ -4,15 +4,39 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  <link rel="stylesheet" href="../semantic.min.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
-  <button id="button_jevi">Jevi 실행</button>
-  <button id="button_le">LiveEntry 실행</button>
+  <div class="ui container">
+    <div class="ui divider"></div>
+    <h1 style="display: inline;">Entry DevTools</h1>
+    <h4 style="display: inline;">&nbsp;v0.1</h4>
+    <div class="ui divider"></div>
+    <details>
+      <summary>변수</summary>
+      <div id="var">
+        <br>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="var">
+          <i class="dropdown icon"></i>
+          <div class="default text">변수 선택...</div>
+          <div class="menu">
+            <div class="item" data-value="1">Male</div>
+            <div class="item" data-value="0">Female</div>
+          </div>
+        </div>
+        <div class="ui input">
+          <input id="value" type="text" placeholder="값">
+        </div>
+        <span>&nbsp;</span>
+        <button onclick="output()" class="ui button black">적용</button>
+      </div>
+    </details> 
+  </div>
+  <script src="../jquery-3.4.1.js"></script>
+  <script src="../semantic.min.js"></script>
   <script src="devtools-panel.js"></script>
 </body>
 

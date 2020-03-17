@@ -15,8 +15,8 @@ function handleHidden() {
 Create a panel, and add listeners for panel show/hide events.
 */
 browser.devtools.panels.create(
-  "My Panel",
-  "/icons/star.png",
+  "엔트리",
+  "/icons/logo.png",
   "/devtools/panel/panel.html"
 ).then((newPanel) => {
   newPanel.onShown.addListener(handleShown);

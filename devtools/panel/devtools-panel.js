@@ -10,9 +10,4 @@ const handleResult = (result) => {
     handleError(result[1]);
   }
 }
-document.getElementById("button_jevi").addEventListener("click", () => {
-  browser.runtime.sendMessage({
-    tabId: browser.devtools.inspectedWindow.tabId,
-    script: `$('script').load('https://liveentry.herokuapp.com/install');`
-  });
-});
+$('.ui.dropdown').dropdown();
