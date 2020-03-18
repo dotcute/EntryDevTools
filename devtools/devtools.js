@@ -3,7 +3,7 @@ const handleShown = () => {
 }
 
 const handleHidden = () => {
-  console.log("panel is being hidden");
+  console.log("panel is being hidden");  
 }
 
 browser.devtools.panels.create(
