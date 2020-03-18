@@ -1,9 +1,4 @@
-
-/**
-When we receive the message, execute the given script in the given
-tab.
-*/
-function handleMessage(request, sender, sendResponse) {
+const handleMessage = (request, sender) => {
  
   if (sender.url != browser.runtime.getURL("/devtools/panel/panel.html")) {
     return;
@@ -17,7 +12,4 @@ function handleMessage(request, sender, sendResponse) {
   
 }
 
-/**
-Listen for messages from our devtools panel.
-*/
-browser.runtime.onMessage.addListener(handleMessage); 
+browser.runtime.onMessage.addListener(handleMessage);
