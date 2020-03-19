@@ -9,8 +9,8 @@ const handleHidden = () => {
 browser.devtools.panels.create(
   "엔트리",
   "/icons/logo.png",
-  "/devtools/panel/panel.html"
-).then((newPanel) => {
+  "/devtools/panel/panel.html",
+  (newPanel) => {
   newPanel.onShown.addListener(handleShown);
   newPanel.onHidden.addListener(handleHidden);
 });
