@@ -17,8 +17,8 @@ const handleMessage = async (req, sender, sendResponse) => {
 
   if (req.action == "readVariables") {
     await browsers.tabs.executeScript(null,{file:"../VariableManager/VariableSender.js"});
-    await browser.tabs.query({active: true, currentWindow: true}, async (tabs) => {
-      await browser.tabs.sendMessage(tabs[0].id, {action: "readVariables"}, (response) => {
+    await browsers.tabs.query({active: true, currentWindow: true}, async (tabs) => {
+      await browsers.tabs.sendMessage(tabs[0].id, {action: "readVariables"}, (response) => {
           console.log(response);
           browsers.runtime.sendMessage({action: "sendVariableContainer",source:response});
       });
