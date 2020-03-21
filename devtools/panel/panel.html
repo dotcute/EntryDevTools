@@ -19,19 +19,17 @@
       <div id="var">
         <br>
         <div class="ui selection dropdown">
-          <input type="hidden" name="var">
+          <input type="hidden" name="var" class="input_variable">
           <i class="dropdown icon"></i>
           <div class="default text">변수 선택...</div>
-          <div class="menu">
-            <div class="item" data-value="1">Male</div>
-            <div class="item" data-value="0">Female</div>
-          </div>
+          <div class="menu"></div>
         </div>
         <div class="ui input">
           <input id="value" type="text" placeholder="값">
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black">적용</button>
+        <button onclick="output()" class="ui button black variable_apply">적용</button>
+        <button class="ui button black variable_refresh">새로고침</button>
       </div>
     </details> 
   </div>
