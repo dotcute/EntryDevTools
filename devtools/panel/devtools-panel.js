@@ -47,8 +47,9 @@ browsers.runtime.onMessage.addListener(function (request, sender, sendResponse) 
     if (request.action == "sendMessageContainer") {
         let d = JSON.parse(request.source.data);
         $(messageMenu).children().remove();
+        console.log(d.Messages.length)
         for (let i = 0; i < d.Messages.length; i++) {
-            $(messageMenu).append('<div class="item" data-value="' + d.Messages[i].name + '">' + d.Messages[i].name + '</div>');
+            $(messageMenu).append('<div class="item" data-value="' + d.Messages[i].id + '">' + d.Messages[i].name + '</div>');
         };
     };
 });
@@ -61,12 +62,12 @@ $(document).ready(() => {
     });
     $('.message_apply').click(() => {
         LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/MessageManager/MessageChanger.js',d=>{
-                        $(document.head).append('<script>'+d.replace('%0','${$('.input_message').val().toString()}').replace('%1','${$('.message_text').val().toString()}')+'</script>');
+                        $(document.head).append('<script>'+d.replace('%0','${$('.input_message').val().toString()}')+'</script>');
                     });`);
     });
 
     VariableReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/VariableManager/registerObject.js');
+        LoadScript(`$.getScript('https://cdn.jsdelivr.net/gh/EntryJSers/EntryDevTools@latest/VariableManager/registerObject.js');
                     undefined;
                     `,
             async () => {
@@ -79,7 +80,7 @@ $(document).ready(() => {
     }, 1000);
 
     MessageReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/VariableManager/registerObject.js');
+        LoadScript(`$.getScript('https://cdn.jsdelivr.net/gh/EntryJSers/EntryDevTools@latest/VariableManager/registerObject.js');
                     undefined;
                     `,
             async () => {
