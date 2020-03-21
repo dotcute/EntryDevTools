@@ -46,46 +46,14 @@ browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 let VariableReloader;
 $(document).ready(() => {
-    LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js'); undefined;`, async () => {
-        // Call it twice bcoz it has bug
-        setTimeout(async () => {
-            await browsers.runtime.sendMessage({action: "readVariables"});
-            setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
-        },200);
-    });
-
-    $('.variable_refresh').click(() => {
-        LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js');
-                    undefined;
-                    `,
-        async () => {
-            // Call it twice bcoz it has bug
-            setTimeout(async () => {
-                new Promise((resolve,reject) => {
-                    browsers.runtime.sendMessage({action: "readVariables"});
-                    resolve(undefined);
-                }).then(() => {
-                    browsers.runtime.sendMessage({action: "readreadVariablesDom"});
-                }); 
-            },200);
-        });
-    });
-
     $('.variable_apply').click(() => {
-        LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js');
-                    undefined;
-                    `,
-        async () => {
-            // Call it twice bcoz it has bug
-            setTimeout(async () => {
-                await browsers.runtime.sendMessage({action: "readVariables"});
-                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
-            },200);
-        });
+        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/VariableManager/VariableChanger.js',d=>{
+                        $(document.head).append('<script>'+d.replace('%0','${$('.input_variable').val().toString()}').replace('%1','${$('.variable_text').val().toString()}')+'</script>');
+                    });`);
     });
 
     VariableReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js');
+        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/VariableManager/registerObject.js');
                     undefined;
                     `,
         async () => {
