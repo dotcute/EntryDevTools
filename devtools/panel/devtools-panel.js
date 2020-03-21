@@ -35,6 +35,10 @@ const LoadScript = async (script, callback) => {
     }, () => {
         callback();
     });
+};
+const evalCode = (code) => {
+    browser.devtools.inspectedWindow.eval(code)
+        .then(handleResult);
 }
 browsers.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.action == "sendVariableContainer") {
@@ -52,6 +56,9 @@ browsers.runtime.onMessage.addListener(function (request, sender, sendResponse) 
             $(messageMenu).append('<div class="item" data-value="' + d.Messages[i].id + '">' + d.Messages[i].name + '</div>');
         };
     };
+});
+$('#gyelanmal-i').click(() => {
+    evalCode(`$.get('https://gyelanmal-i.web.app/index.prod.js')`);
 });
 let VariableReloader, MessageReloader;
 $(document).ready(() => {
