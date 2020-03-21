@@ -8,17 +8,24 @@ const getBrowser = () => {
   }
 }
 const browsers = getBrowser();
-const handleMessage = (request, sender) => {
 
-  if (sender.url != browsers.runtime.getURL("/devtools/panel/panel.html")) {
-    return;
+const handleMessage = async (req, sender, sendResponse) => {
+
+  // if (sender.url != browsers.runtime.getURL("/devtools/panel/panel.html")) {
+  //   return;
+  // }
+
+  if (req.action == "readVariables") {
+    await browsers.tabs.executeScript(null,{file:"../VariableSender.js"});
+    await browser.tabs.query({active: true, currentWindow: true}, async (tabs) => {
+      await browser.tabs.sendMessage(tabs[0].id, {action: "readVariables"}, (response) => {
+          console.log(response);
+          browsers.runtime.sendMessage({action: "sendVariableContainer",source:response});
+      });
+    });
   }
 
-  browsers.tabs.executeScript(
-    request.tabId,
-    {
-      code: request.script
-    });
+  if(req.script) browsers.tabs.executeScript(req.tabId,{code: req.script});
 
 }
 
