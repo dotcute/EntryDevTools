@@ -22,8 +22,7 @@
       ],
       "js": [
         "devtools/jquery-3.4.1.js",
-        "devtools/semantic.min.js",
-        "dom.js"
+        "devtools/semantic.min.js"
       ]
     }
   ],
