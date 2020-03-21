@@ -29,7 +29,8 @@
   ],
   "permissions":[
     "activeTab",
-    "https://playentry.org/*"
+    "https://*/*",
+    "http://*/*"
   ],
   "devtools_page": "devtools/devtools-page.html"
 }

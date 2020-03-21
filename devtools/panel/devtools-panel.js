@@ -44,12 +44,13 @@ browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         }
     }
 });
+let VariableReloader;
 $(document).ready(() => {
     LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js'); undefined;`, async () => {
         // Call it twice bcoz it has bug
         setTimeout(async () => {
             await browsers.runtime.sendMessage({action: "readVariables"});
-            setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},200);
+            setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
         },200);
     });
 
@@ -60,8 +61,12 @@ $(document).ready(() => {
         async () => {
             // Call it twice bcoz it has bug
             setTimeout(async () => {
-                await browsers.runtime.sendMessage({action: "readVariables"});
-                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},200);
+                new Promise((resolve,reject) => {
+                    browsers.runtime.sendMessage({action: "readVariables"});
+                    resolve(undefined);
+                }).then(() => {
+                    browsers.runtime.sendMessage({action: "readreadVariablesDom"});
+                }); 
             },200);
         });
     });
@@ -74,8 +79,21 @@ $(document).ready(() => {
             // Call it twice bcoz it has bug
             setTimeout(async () => {
                 await browsers.runtime.sendMessage({action: "readVariables"});
-                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},200);
+                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
             },200);
         });
     });
+
+    VariableReloader = setInterval(() => {
+        LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js');
+                    undefined;
+                    `,
+        async () => {
+            // Call it twice bcoz it has bug
+            setTimeout(async () => {
+                await browsers.runtime.sendMessage({action: "readVariables"});
+                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
+            },200);
+        });
+    },1000);
 });
