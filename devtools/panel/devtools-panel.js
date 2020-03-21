@@ -44,14 +44,15 @@ browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         }
     }
 });
-LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js'); undefined;`, async () => {
-    // Call it twice bcoz it has bug
-    setTimeout(async () => {
-        await browsers.runtime.sendMessage({action: "readVariables"});
-        setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},200);
-    },200);
-});
 $(document).ready(() => {
+    LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js'); undefined;`, async () => {
+        // Call it twice bcoz it has bug
+        setTimeout(async () => {
+            await browsers.runtime.sendMessage({action: "readVariables"});
+            setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},200);
+        },200);
+    });
+
     $('.variable_refresh').click(() => {
         LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/devtools/registerObject.js');
                     undefined;
