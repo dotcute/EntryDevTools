@@ -1,4 +1,5 @@
-$('.ui.dropdown').dropdown();
+$('#var .ui.dropdown').dropdown();
+$('#list .ui.dropdown').dropdown();
 const variableMenu = "#var .ui.selection.dropdown .menu";
 const getBrowser = () => {
     const browserType = navigator.userAgent.toLowerCase();
@@ -36,7 +37,7 @@ const LoadScript = async (script,callback) => {
     });
 }
 browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if(request.action == "sendVariableContainer") {
+    if(request.action == "sendObjectContainer") {
         let d = JSON.parse(request.source.data);
         $(variableMenu).children().remove();
         for(let i = 0; i < d.Variables.length; i++) {
@@ -47,20 +48,20 @@ browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 let VariableReloader;
 $(document).ready(() => {
     $('.variable_apply').click(() => {
-        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/VariableManager/VariableChanger.js',d=>{
+        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/VariableChanger.js',d=>{
                         $(document.head).append('<script>'+d.replace('%0','${$('.input_variable').val().toString()}').replace('%1','${$('.variable_text').val().toString()}')+'</script>');
                     });`);
     });
 
-    VariableReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/VariableManager/registerObject.js');
+    ObjectReloader = setInterval(() => {
+        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/ObjectManager/registerObject.js');
                     undefined;
                     `,
         async () => {
             // Call it twice bcoz it has bug
             setTimeout(async () => {
-                await browsers.runtime.sendMessage({action: "readVariables"});
-                setTimeout(() => {browsers.runtime.sendMessage({action: "readreadVariablesDom"})},300);
+                await browsers.runtime.sendMessage({action: "readObject"});
+                setTimeout(() => {browsers.runtime.sendMessage({action: "readObject"})},300);
             },200);
         });
     },1000);

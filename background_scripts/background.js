@@ -4,7 +4,7 @@ const getBrowser = () => {
   if(browserType.indexOf("chrome") != -1){
     return chrome;
   }else if(browserType.indexOf("firefox") != -1){
-    return browsers;
+    return browser;
   }
 }
 const browsers = getBrowser();
@@ -15,12 +15,12 @@ const handleMessage = async (req, sender, sendResponse) => {
   //   return;
   // }
 
-  if (req.action == "readVariables") {
-    await browsers.tabs.executeScript(null,{file:"../VariableManager/VariableSender.js"});
+  if (req.action == "readObject") {
+    await browsers.tabs.executeScript(null,{file:"../ObjectManager/ObjectSender.js"});
     await browsers.tabs.query({active: true, currentWindow: true}, async (tabs) => {
-      await browsers.tabs.sendMessage(tabs[0].id, {action: "readVariables"}, (response) => {
+      await browsers.tabs.sendMessage(tabs[0].id, {action: "readObject"}, (response) => {
           console.log(response);
-          browsers.runtime.sendMessage({action: "sendVariableContainer",source:response});
+          browsers.runtime.sendMessage({action: "sendObjectContainer",source:response});
       });
     });
   }

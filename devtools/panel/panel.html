@@ -14,7 +14,7 @@
     <h1 style="display: inline;">Entry DevTools</h1>
     <h4 style="display: inline;">&nbsp;v0.1</h4>
     <div class="ui divider"></div>
-    <details>
+    <details style="padding-bottom: 10px;">
       <summary>변수</summary>
       <div id="var">
         <br>
@@ -31,6 +31,23 @@
         <button onclick="output()" class="ui button black variable_apply">적용</button>
       </div>
     </details> 
+    <details style="padding-bottom: 10px;">
+      <summary>리스트</summary>
+      <div id="list">
+        <br>
+        <div class="ui selection dropdown">
+          <input type="hidden" name="list" class="input_list">
+          <i class="dropdown icon"></i>
+          <div class="default text">리스트 선택...</div>
+          <div class="menu"></div>
+        </div>
+        <div class="ui input">
+          <input class="list_text" id="value" type="text" placeholder="값">
+        </div>
+        <span>&nbsp;</span>
+        <button onclick="output()" class="ui button black list_apply">적용</button>
+      </div style="padding-bottom: 10px;">
+    </details>
   </div>
   <script src="../jquery-3.4.1.js"></script>
   <script src="../semantic.min.js"></script>
