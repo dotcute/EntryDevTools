@@ -35,17 +35,31 @@
       <summary>리스트</summary>
       <div id="list">
         <br>
-        <div class="ui selection dropdown">
+        <div class="ui selection dropdown" style="width: 387px; padding-bottom: 10px;">
           <input type="hidden" name="list" class="input_list">
           <i class="dropdown icon"></i>
           <div class="default text">리스트 선택...</div>
           <div class="menu"></div>
         </div>
-        <div class="ui input">
-          <input class="list_text" id="value" type="text" placeholder="값">
+        <form class="ui form" style="width: 387px; margin-top: 10px;">
+          <textarea class="autosize list_input_array" placeholder="리스트 항목 ( 엔터로 구분 )" rows="1" style="resize: none; height: 43px;"></textarea>
+        </form>
+        <span>&nbsp;</span>
+        <button onclick="output()" class="ui button black list_apply" style="position: relative; top: -40px; left: 400px">적용</button>
+      </div>
+    </details>
+    <details style="padding-bottom: 10px;">
+      <summary>신호</summary>
+      <div id="msg">
+        <br>
+        <div class="ui selection dropdown" style="width: 387px;">
+          <input type="hidden" name="message" class="input_message">
+          <i class="dropdown icon"></i>
+          <div class="default text">신호 선택...</div>
+          <div class="menu"></div>
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black list_apply">적용</button>
+        <button onclick="output()" class="ui button black message_raise">신호 보내기</button>
       </div style="padding-bottom: 10px;">
     </details>
   </div>
