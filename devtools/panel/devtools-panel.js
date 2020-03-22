@@ -91,6 +91,15 @@ $(document).ready(() => {
         LoadScript(script);
     });
 
+    $('.list_valueofindex_apply').click(() => {
+        console.log($('.list_input_valueofindex_text').val().toString());
+        let script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListValueOfIndexChanger.js', d=> {
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_index_list').val().toString()}').replace('%1','${$('.list_input_index').val().toString()}').replace('%2','${$('.list_input_valueofindex_text').val().toString()}')+'</script>');
+        });`;
+        console.log(script);
+        LoadScript(script);
+    });
+
     ObjectReloader = setInterval(() => {
         LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/ObjectManager/registerObject.js');
                     undefined;
