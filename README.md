@@ -5,7 +5,7 @@ Make [entry](https://playentry.org) projects easier with Entry DevTools for [Fir
 ## TODO
  - [x] Add "엔트리" panel to DevTools 
  - [x] Change values of Variables
- - [ ] Change values of Lists 
- - [ ] Raise Messages (Signals)
+ - [x] Change values of Lists 
+ - [x] Raise Messages (Signals)
  - [ ] Print project
  - [ ] Install user scripts for entry like [Jevi](https://github.com/gnlow/Jevi) or [LiveEntry](https://github.com/muno9748/LiveEntry)
