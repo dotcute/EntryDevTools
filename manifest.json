@@ -18,12 +18,11 @@
         "https://playentry.org/*"
       ],
       "css": [
-        "semantic.min.css"
+        "devtools/semantic.min.css"
       ],
       "js": [
         "devtools/jquery-3.4.1.js",
-        "devtools/semantic.min.js",
-        "dom.js"
+        "devtools/semantic.min.js"
       ]
     }
   ],
