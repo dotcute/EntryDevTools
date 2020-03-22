@@ -71,7 +71,7 @@ $(document).ready(() => {
     });
 
     ObjectReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/a6273ccc962bf7a35019cb4eb0142467454c9edb/ObjectManager/registerObject.js');
+        LoadScript(`$.getScript('https://cdn.jsdelivr.net/gh/EntryJSers/EntryDevTools@master/ObjectManager/registerObject.js');
                     undefined;
                     `,
         async () => {
