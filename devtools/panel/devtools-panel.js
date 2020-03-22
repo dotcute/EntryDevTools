@@ -1,6 +1,11 @@
 $('#var .ui.dropdown').dropdown();
 $('#list .ui.dropdown').dropdown();
+$('#msg .ui.dropdown').dropdown();
+$("textarea.autosize").on('keydown keyup', function () {
+    $(this).height(1).height( $(this).prop('scrollHeight') - 22 );	
+});
 const variableMenu = "#var .ui.selection.dropdown .menu";
+const listMenu = "#list .ui.selection.dropdown .menu";
 const messageMenu = "#msg .ui.selection.dropdown .menu";
 const getBrowser = () => {
     const browserType = navigator.userAgent.toLowerCase();
@@ -49,11 +54,11 @@ browsers.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         for (let i = 0; i < d.Variables.length; i++) {
             $(variableMenu).append('<div class="item" data-value="' + d.Variables[i].name + '">' + d.Variables[i].name + '</div>');
         };
-    };
-    if (request.action == "sendMessageContainer") {
-        let d = JSON.parse(request.source.data);
+        $(listMenu).children().remove();
+        for (let i = 0; i < d.Lists.length; i++) {
+            $(listMenu).append('<div class="item" data-value="' + d.Lists[i].name + '">' + d.Lists[i].name + '</div>');
+        };
         $(messageMenu).children().remove();
-        console.log(d.Messages.length)
         for (let i = 0; i < d.Messages.length; i++) {
             $(messageMenu).append('<div class="item" data-value="' + d.Messages[i].id + '">' + d.Messages[i].name + '</div>');
         };
@@ -66,8 +71,24 @@ let VariableReloader, MessageReloader;
 $(document).ready(() => {
     $('.variable_apply').click(() => {
         LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/VariableChanger.js',d=>{
-                        $(document.head).append('<script>'+d.replace('%0','${$('.input_variable').val().toString()}').replace('%1','${$('.variable_text').val().toString()}')+'</script>');
-                    });`);
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_variable').val().toString()}').replace('%1','${$('.variable_text').val().toString()}')+'</script>');
+        });`);
+    });
+
+    $('.message_raise').click(() => {
+        console.log($('.input_message').val().toString());
+        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/MessageRaiser.js', d=> {
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_message').val().toString()}')+'</script>');
+        });`);
+    });
+
+    $('.list_apply').click(() => {
+        console.log($('.list_input_array').val().split('\n'));
+        let script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListChanger.js', d=> {
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_list').val().toString()}').replace('%1',\`${$('.list_input_array').val() == "" ? "[]" : JSON.stringify($('.list_input_array').val().split('\n')).replace(/\`/gi,'\\\\\"').replace(/\"/gi,'\\\"')}\`)+'</script>');
+        });`;
+        console.log(script);
+        LoadScript(script);
     });
 
     ObjectReloader = setInterval(() => {
