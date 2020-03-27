@@ -1,6 +1,7 @@
 $('#var .ui.dropdown').dropdown();
 $('#list .ui.dropdown').dropdown();
 $('#msg .ui.dropdown').dropdown();
+$('#script .ui.dropdown').dropdown();
 $("textarea.autosize").on('keydown keyup', function () {
     $(this).height(1).height( $(this).prop('scrollHeight') - 22 );	
 });
@@ -73,6 +74,7 @@ $(document).ready(() => {
         LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/VariableChanger.js',d=>{
             $(document.head).append('<script>'+d.replace('%0','${$('.input_variable').val().toString()}').replace('%1','${$('.variable_text').val().toString()}')+'</script>');
         });`);
+        $('.variable_text').val('')
     });
 
     $('.message_raise').click(() => {
@@ -89,6 +91,7 @@ $(document).ready(() => {
         });`;
         console.log(script);
         LoadScript(script);
+        $('.list_input_array').val('')
     });
 
     $('.list_valueofindex_apply').click(() => {
@@ -98,6 +101,14 @@ $(document).ready(() => {
         });`;
         console.log(script);
         LoadScript(script);
+        $('.list_input_valueofindex_text').val('')
+    });
+
+    $('.script_install').click(() => {
+        console.log($('.input_message').val().toString());
+        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ScriptInstaller.js', d=> {
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_message').val().toString()}')+'</script>');
+        });`);
     });
 
     ObjectReloader = setInterval(() => {

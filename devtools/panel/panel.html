@@ -89,6 +89,24 @@
         <button onclick="output()" class="ui button black message_raise">신호 보내기</button>
       </div style="padding-bottom: 10px;">
     </details>
+    <details style="padding-bottom: 10px;">
+      <summary>유저스크립트</summary>
+      <div id="script">
+        <br>
+        <div class="ui selection dropdown" style="width: 387px;">
+          <input type="hidden" name="script" class="input_script">
+          <i class="dropdown icon"></i>
+          <div class="default text">스크립트 선택...</div>
+          <div class="menu">
+            <div class="item" data-value="jevi">Jevi</div>
+            <div class="item" data-value="liveentry">LiveEntry</div>
+            <div class="item" data-value="gyelanmali">계란말이</div>
+          </div>
+        </div>
+        <span>&nbsp;</span>
+        <button onclick="output()" class="ui button black script_install">스크립트 설치하기</button>
+      </div style="padding-bottom: 10px;">
+    </details>
   </div>
   <script src="../jquery-3.4.1.js"></script>
   <script src="../semantic.min.js"></script>
