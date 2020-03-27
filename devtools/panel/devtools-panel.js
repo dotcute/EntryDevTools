@@ -105,10 +105,8 @@ $(document).ready(() => {
     });
 
     $('.script_install').click(() => {
-        console.log($('.input_message').val().toString());
-        LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ScriptInstaller.js', d=> {
-            $(document.head).append('<script>'+d.replace('%0','${$('.input_message').val().toString()}')+'</script>');
-        });`);
+        console.log($('.input_script').val().toString());
+        // 구현 중
     });
 
     ObjectReloader = setInterval(() => {
