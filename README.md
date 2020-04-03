@@ -8,6 +8,6 @@ Make [entry](https://playentry.org) projects easier with Entry DevTools for [Fir
  - [x] Change values of Lists 
  - [x] Raise Messages (Signals)
   - [x] Install user scripts for entry like [Jevi](https://github.com/gnlow/Jevi) or [LiveEntry](https://github.com/muno9748/LiveEntry) or [gyelanmal-i](https://github.com/DQSR/gyelanmal-i)
- - [ ] Print project
+ - [x] Print project
  - [ ] Edit Functions (Entry.block.*.func)
  - [ ] Create Stop point
