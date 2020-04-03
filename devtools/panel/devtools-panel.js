@@ -51,8 +51,9 @@ let pjktId;
 
 browsers.runtime.onMessage.addListener((request) => {
     if (request.action == 'sendObjectContainer') {
-        pjktId = d.ID;
         const d = JSON.parse(request.source.data);
+        pjktId = d.ID;
+        console.log(d.ID);
         $(variableMenu).children().remove();
         for (let i = 0; i < d.Variables.length; i++) {
             $(variableMenu).append('<div class="item" data-value="' + d.Variables[i].name + '">' + d.Variables[i].name + '</div>');
@@ -123,7 +124,7 @@ $(document).ready(() => {
 
     // eslint-disable-next-line no-undef
     ObjectReloader = setInterval(() => {
-        LoadScript(`$.getScript('https://raw.githack.com/EntryJSers/EntryDevTools/master/ObjectManager/registerObject.js');
+        LoadScript(`$.getScript('https://rawcdn.githack.com/EntryJSers/EntryDevTools/master/ObjectManager/registerObject.js');
                     undefined;
                     `,
             async () => {
