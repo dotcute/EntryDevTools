@@ -47,8 +47,11 @@ const evalCode = (code) => {
     browser.devtools.inspectedWindow.eval(code);
 };
 
-browsers.runtime.onMessage.addListener(function (request) {
+let pjktId;
+
+browsers.runtime.onMessage.addListener((request) => {
     if (request.action == 'sendObjectContainer') {
+        pjktId = d.ID;
         const d = JSON.parse(request.source.data);
         $(variableMenu).children().remove();
         for (let i = 0; i < d.Variables.length; i++) {
@@ -64,6 +67,7 @@ browsers.runtime.onMessage.addListener(function (request) {
         }
     }
 });
+
 $(document).ready(() => {
     $('.variable_apply').click(() => {
         LoadScript(`$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/VariableChanger.js',d=>{
@@ -82,7 +86,7 @@ $(document).ready(() => {
     $('.list_apply').click(() => {
         console.log($('.list_input_array').val().split('\n'));
         const script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListChanger.js', d=> {
-            $(document.head).append('<script>'+d.replace('%0','${$('.input_list').val().toString()}').replace('%1',\`${$('.list_input_array').val() == '' ? '[]' : JSON.stringify($('.list_input_array').val().split('\n')).replace(/\`/gi, '\\\\\"').replace(/\"/gi, '\\\"')}\`)+'</script>');
+            $(document.head).append('<script>'+d.replace('%0','${$('.input_list').val().toString()}').replace('%1',\`${$('.list_input_array').val() == '' ? '[]' : JSON.stringify($('.list_input_array').val().split('\n')).replace(/`/gi, '\\\\"').replace(/"/gi, '\\"')}\`)+'</script>');
         });`;
         console.log(script);
         LoadScript(script);
@@ -108,6 +112,13 @@ $(document).ready(() => {
         } else if (userScriptType == 'liveentry') {
             evalCode('$(\'script\').load(\'https://liveentry.herokuapp.com/install\')');
         }
+    });
+
+    $('.print').click(() => {
+        if (pjktId == undefined) return $('#saveFirst').show();
+        const win = window.open(`https://playentry.org/print/${pjktId}`, '_blank');
+        win.focus();
+        $('#saveFirst').hide();
     });
 
     // eslint-disable-next-line no-undef

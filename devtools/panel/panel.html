@@ -28,7 +28,7 @@
           <input class="variable_text" id="value" type="text" placeholder="값">
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black variable_apply">적용</button>
+        <button class="ui button black variable_apply">적용</button>
       </div>
       <div class="ui divider"></div>
     </details> 
@@ -46,7 +46,7 @@
           <textarea class="autosize list_input_array" placeholder="리스트 항목 ( 엔터로 구분 )" rows="1" style="resize: none; height: 43px;"></textarea>
         </form>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black list_apply" style="position: relative; top: -40px; left: 400px">적용</button>
+        <button class="ui button black list_apply" style="position: relative; top: -40px; left: 400px">적용</button>
       </div>
       <div class="ui divider"></div>
     </details>
@@ -71,7 +71,7 @@
           </form>
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black list_valueofindex_apply" style="position: relative; top: -40px; left: 400px">적용</button>
+        <button class="ui button black list_valueofindex_apply" style="position: relative; top: -40px; left: 400px">적용</button>
       </div>
       <div class="ui divider"></div>
     </details>
@@ -86,7 +86,7 @@
           <div class="menu"></div>
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black message_raise">신호 보내기</button>
+        <button class="ui button black message_raise">신호 보내기</button>
       </div style="padding-bottom: 10px;">
     </details>
     <details style="padding-bottom: 10px;">
@@ -104,8 +104,16 @@
           </div>
         </div>
         <span>&nbsp;</span>
-        <button onclick="output()" class="ui button black script_install">스크립트 설치하기</button>
+        <button class="ui button black script_install">스크립트 설치하기</button>
       </div style="padding-bottom: 10px;">
+    </details>
+    <details id="printPj" style="padding-bottom: 10px;">
+      <summary>인쇄</summary>
+      <div id="print">
+        <br>
+        <button class="ui button black print">인쇄</button>
+      </div style="padding-bottom: 10px;">
+      <p id="saveFirst" style="display: none;">먼저 작품을 저장해주세요!</p>
     </details>
   </div>
   <script src="../jquery-3.4.1.js"></script>
