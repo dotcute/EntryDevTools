@@ -86,7 +86,7 @@ $(document).ready(() => {
 
     $('.list_apply').click(() => {
         console.log($('.list_input_array').val().split('\n'));
-        const script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListChanger.js', d=> {
+        const script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListChanger.txt', d=> {
             $(document.head).append('<script>'+d.replace('%0','${$('.input_list').val().toString()}').replace('%1',\`${$('.list_input_array').val() == '' ? '[]' : JSON.stringify($('.list_input_array').val().split('\n')).replace(/`/gi, '\\\\"').replace(/"/gi, '\\"')}\`)+'</script>');
         });`;
         console.log(script);
@@ -96,7 +96,7 @@ $(document).ready(() => {
 
     $('.list_valueofindex_apply').click(() => {
         console.log($('.list_input_valueofindex_text').val().toString());
-        const script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListValueOfIndexChanger.js', d=> {
+        const script = `$.get('https://raw.githubusercontent.com/EntryJSers/EntryDevTools/master/ObjectManager/ListValueOfIndexChanger.txt', d=> {
             $(document.head).append('<script>'+d.replace('%0','${$('.input_index_list').val().toString()}').replace('%1','${$('.list_input_index').val().toString()}').replace('%2',"{data:'${$('.list_input_valueofindex_text').val().toString()}'}")+'</script>');
         });`;
         console.log(script);
