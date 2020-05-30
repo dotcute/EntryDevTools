@@ -114,6 +114,8 @@ $(document).ready(() => {
             evalCode('$(\'script\').load(\'https://liveentry.herokuapp.com/install\')');
         } else if (userScriptType == 'enttube') {
             evalCode('$.get(\'https://raw.githack.com/thoratica/EntTube/master/EntTube.min.js\')');
+        } else if (userScriptType == 'entblocks') {
+          evalCode(`import('https://block.blokode.xyz/block.js')`);
         }
     });
 
